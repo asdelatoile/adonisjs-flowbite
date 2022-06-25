@@ -19,7 +19,33 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import { schema } from '@ioc:Adonis/Core/Validator'
 
 Route.get('/', async ({ view }) => {
   return view.render('welcome')
+})
+
+Route.post('login', async ({ auth, request, response, session }) => {
+
+  await request.validate({
+    schema: schema.create({
+      email: schema.string(),
+      password: schema.string(),
+    }),
+    messages: {
+      required: 'The {{ field }} is required',
+    }
+  })
+
+  const email = request.input('email')
+  const password = request.input('password')
+
+  try {
+    await auth.use('web').attempt(email, password)
+    session.flash('success', 'Login ok !')
+    response.redirect().back()
+  } catch {
+    session.flash('error', 'Login KO !')
+    response.redirect().back()
+  }
 })

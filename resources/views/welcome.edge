@@ -2,23 +2,65 @@
 
 @section('body')
 
+{{ inspect(flashMessages.all()) }}
+
+@if(flashMessages.has('success'))
+    {{ flashMessages.get('success') }}
+@end
+
+@if(flashMessages.has('error'))
+    {{ flashMessages.get('error') }}
+@end
+
+@if(auth.isLoggedIn)
+<p> Hello {{ auth.user.email }} </p>
+@endif
+
+<form action="/login" method="POST">
+    <div>
+        <p>
+            <label for="title">Email</label>
+        </p>
+
+        <input type="text" name="email" value="{{ flashMessages.get('email') || '' }}" />
+        @if(flashMessages.has('errors.email'))
+        {{ flashMessages.get('errors.email') }}
+        @end
+    </div>
+
+    <div>
+        <p>
+            <label for="body">Password</label>
+        </p>
+
+        <input type="password" name="password" />
+        @if(flashMessages.has('errors.password'))
+        {{ flashMessages.get('errors.password') }}
+        @end
+    </div>
+
+    <div>
+        @!component('components.button', {
+        text: 'Login',
+        type: 'submit'
+        })
+    </div>
+</form>
+
 <div class="pt-10">
-@!component('components.button', {
-  text: 'Login',
-  type: 'submit'
-})
 
-@!component('components.button', {
-  text: 'Toggle modal 1',
-  type: 'button',
-  'data-modal-toggle': 'defaultModal'
-})
 
-@!component('components.button', {
-  text: 'Toggle modal 2',
-  type: 'button',
-  'data-modal-toggle': 'popup-modal'
-})
+    @!component('components.button', {
+    text: 'Toggle modal 1',
+    type: 'button',
+    'data-modal-toggle': 'defaultModal'
+    })
+
+    @!component('components.button', {
+    text: 'Toggle modal 2',
+    type: 'button',
+    'data-modal-toggle': 'popup-modal'
+    })
 </div>
 
 <!-- Main modal -->
