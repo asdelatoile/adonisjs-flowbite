@@ -22,6 +22,8 @@ export default class ExceptionHandler extends HttpExceptionHandler {
     '404': 'errors/not-found',
     '500..599': 'errors/server-error',
   }
+  
+  protected disableStatusPagesInDevelopment = false
 
   constructor () {
     super(Logger)

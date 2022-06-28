@@ -2,14 +2,25 @@
 
 @section('body')
 
+
+@can('dynamic', 'posts.edit')
+  <div>KO</div>
+@end
+
+@can('dynamic', 'permissions.edit')
+  <div>OK</div>
+@end
+
+{{ inspect({ authorizations: auth.user.authorizations })}}
+
 {{ inspect(flashMessages.all()) }}
 
 @if(flashMessages.has('success'))
-    {{ flashMessages.get('success') }}
+{{ flashMessages.get('success') }}
 @end
 
 @if(flashMessages.has('error'))
-    {{ flashMessages.get('error') }}
+{{ flashMessages.get('error') }}
 @end
 
 @if(auth.isLoggedIn)
@@ -40,7 +51,7 @@
     </div>
 
     <div>
-        @!component('components.button', {
+        @!component('components/button', {
         text: 'Login',
         type: 'submit'
         })
@@ -50,13 +61,13 @@
 <div class="pt-10">
 
 
-    @!component('components.button', {
+    @!component('components/button', {
     text: 'Toggle modal 1',
     type: 'button',
     'data-modal-toggle': 'defaultModal'
     })
 
-    @!component('components.button', {
+    @!component('components/button', {
     text: 'Toggle modal 2',
     type: 'button',
     'data-modal-toggle': 'popup-modal'
@@ -142,7 +153,7 @@
 </div>
 
 <div class="pt-20">
-    @!component('components.carousel')
+    @!component('components/carousel')
 </div>
 
 @end

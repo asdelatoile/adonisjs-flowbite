@@ -1,0 +1,47 @@
+@layout('layouts/main')
+
+@section('body')
+
+{{ inspect(flashMessages.all()) }}
+
+@if(flashMessages.has('success'))
+    {{ flashMessages.get('success') }}
+@end
+
+@if(flashMessages.has('error'))
+    {{ flashMessages.get('error') }}
+@end
+
+<form action="{{ route('permissions.store') }}" method="POST">
+
+    <div>
+        <p>
+            <label for="name">Nom</label>
+        </p>
+        <input type="text" name="name" value="{{ flashMessages.get('name') || '' }}" />
+        @if(flashMessages.has('errors.name'))
+        {{ flashMessages.get('errors.name') }}
+        @end
+    </div>
+
+    <div>
+        <p>
+            <label for="description">Description</label>
+        </p>
+
+        <input type="text" name="description" value="{{ flashMessages.get('description') || '' }}" />
+        @if(flashMessages.has('errors.description'))
+        {{ flashMessages.get('errors.description') }}
+        @end
+    </div>
+
+    <div>
+        @!component('components/button', {
+        text: 'Add',
+        type: 'submit'
+        })
+    </div>
+</form>
+
+
+@end

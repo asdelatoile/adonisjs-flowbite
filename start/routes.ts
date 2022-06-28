@@ -20,8 +20,12 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import { schema } from '@ioc:Adonis/Core/Validator'
+import User from 'App/Models/User'
 
-Route.get('/', async ({ view }) => {
+Route.resource('permissions', 'PermissionController').as('permissions')
+
+Route.get('/', async ({ auth, bouncer, view }) => {
+  
   return view.render('welcome')
 })
 

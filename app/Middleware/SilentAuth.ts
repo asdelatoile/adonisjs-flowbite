@@ -16,6 +16,9 @@ export default class SilentAuthMiddleware {
      * set to the instance of the currently logged in user.
      */
     await auth.check()
+    await auth.user.getAuthorizations()
+    console.log(auth.user);
+
     await next()
   }
 }

@@ -1,0 +1,19 @@
+@layout('layouts/main')
+
+@section('body')
+
+{{ inspect(flashMessages.all()) }}
+
+@if(flashMessages.has('success'))
+    {{ flashMessages.get('success') }}
+@end
+
+@if(flashMessages.has('error'))
+    {{ flashMessages.get('error') }}
+@end
+
+@each(permission in permissions)
+  <li> {{ permission.name }} {{ permission.description || '' }}</li>
+@end
+
+@end
