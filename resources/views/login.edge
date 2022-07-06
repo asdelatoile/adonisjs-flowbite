@@ -1,0 +1,35 @@
+@layout('layouts/main')
+
+@section('body')
+
+<form action="/login" method="POST">
+    {{ csrfField() }}
+    <div>
+        <p>
+            <label for="title">Email</label>
+        </p>
+        <input type="text" name="email" value="{{ flashMessages.get('email') || '' }}" />
+        @if(flashMessages.has('errors.email'))
+        {{ flashMessages.get('errors.email') }}
+        @end
+    </div>
+
+    <div>
+        <p>
+            <label for="body">Password</label>
+        </p>
+        <input type="password" name="password" />
+        @if(flashMessages.has('errors.password'))
+        {{ flashMessages.get('errors.password') }}
+        @end
+    </div>
+
+    <div>
+        @!component('components/button', {
+        text: 'Login',
+        type: 'submit'
+        })
+    </div>
+</form>
+
+@end

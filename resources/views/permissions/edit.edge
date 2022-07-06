@@ -4,13 +4,21 @@
 
 {{ inspect(flashMessages.all()) }}
 
-<form action="{{ route('permissions.store') }}" method="POST">
+@if(flashMessages.has('success'))
+    {{ flashMessages.get('success') }}
+@end
+
+@if(flashMessages.has('error'))
+    {{ flashMessages.get('error') }}
+@end
+
+<form action="{{ route('permissions.update', {id: record.id}) }}?_method=PATCH" method="POST">
     {{ csrfField() }}
     <div>
         <p>
             <label for="name">Nom</label>
         </p>
-        <input type="text" name="name" value="{{ flashMessages.get('name') || record.name }}" />
+        <input type="text" name="name" value="{{ flashMessages.get('name', record.name) || '' }}" />
         @if(flashMessages.has('errors.name'))
         {{ flashMessages.get('errors.name') }}
         @end
@@ -21,7 +29,7 @@
             <label for="description">Description</label>
         </p>
 
-        <input type="text" name="description" value="{{ flashMessages.get('description') || record.description }}" />
+        <input type="text" name="description" value="{{ flashMessages.get('description', record.description) || '' }}" />
         @if(flashMessages.has('errors.description'))
         {{ flashMessages.get('errors.description') }}
         @end

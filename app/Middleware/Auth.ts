@@ -72,7 +72,7 @@ export default class AuthMiddleware {
     const guards = customGuards.length ? customGuards : [auth.name]
     await this.authenticate(auth, guards)
     await auth.user.getAuthorizations()
-    console.log(auth.user);
+    // console.log(auth.user);
 
     await next()
   }

@@ -11,23 +11,26 @@
   <div>OK</div>
 @end
 
+@if(auth.isLoggedIn)
 {{ inspect({ authorizations: auth.user.authorizations })}}
+@endif
 
 {{ inspect(flashMessages.all()) }}
 
 @if(flashMessages.has('success'))
 {{ flashMessages.get('success') }}
-@end
+@endif
 
 @if(flashMessages.has('error'))
 {{ flashMessages.get('error') }}
-@end
+@endif
 
 @if(auth.isLoggedIn)
 <p> Hello {{ auth.user.email }} </p>
 @endif
 
 <form action="/login" method="POST">
+    {{ csrfField() }}
     <div>
         <p>
             <label for="title">Email</label>

@@ -91,7 +91,7 @@
   dependencies:
     "@poppinss/utils" "^4.0.2"
 
-"@adonisjs/core@^5.8.0":
+"@adonisjs/core@^5.8.4":
   version "5.8.4"
   resolved "https://registry.yarnpkg.com/@adonisjs/core/-/core-5.8.4.tgz#6b31b2432aa91509ca7a9c1229ff8277258586a5"
   integrity sha512-Qc05xCTAEi1Yfu8ZReT+Fib6TAsKZzC6MIMqMVF+UsmP31woUFPqnSO2006lRWC56dJrvju1OSj6rYE54Js14g==
@@ -234,7 +234,7 @@
     "@poppinss/utils" "^4.0.3"
     jest-worker "^27.5.1"
 
-"@adonisjs/repl@^3.1.0":
+"@adonisjs/repl@^3.1.11":
   version "3.1.11"
   resolved "https://registry.yarnpkg.com/@adonisjs/repl/-/repl-3.1.11.tgz#49acd3ad77e97c322b308a6bd7d76840686708d7"
   integrity sha512-t4xN+G+fa/XeZ+7qHnFbTk1bri/4RIGdFDk1cq2SeZI3nfu3E8Ma62uQVc8U3AAroN51plzXVcUoQ/Iw8q1P+Q==
@@ -258,7 +258,7 @@
     rev-hash "^3.0.0"
     source-map-support "^0.5.21"
 
-"@adonisjs/session@^6.2.0":
+"@adonisjs/session@^6.4.0":
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/@adonisjs/session/-/session-6.4.0.tgz#464201a02df6a5d05c3ff423565ab0e7914c355d"
   integrity sha512-9yHS60lFpNBUX5/yB+0j+bXQDWqbaYJ1JelLCYtaKRa7B0NewvmPAmsNpHH8SrXE3XGaRyKOxrUGRcmSGg5mRA==
@@ -266,7 +266,7 @@
     "@poppinss/utils" "^4.0.4"
     fs-extra "^10.1.0"
 
-"@adonisjs/shield@^7.0.0":
+"@adonisjs/shield@^7.0.11":
   version "7.0.11"
   resolved "https://registry.yarnpkg.com/@adonisjs/shield/-/shield-7.0.11.tgz#e4d9d9154e2c16ba0e393378743d1772f419548d"
   integrity sha512-NppVYTbztYgThBSoTLQCDLR8vx7OIddlCKZjqM7gtKgpJVNd/gR2BqwIUx0niMUzHTWl542cdQIDNP2UDmHbaA==
@@ -304,14 +304,14 @@
     tmp-cache "^1.1.0"
     validator "^13.7.0"
 
-"@adonisjs/view@^6.1.0":
-  version "6.1.5"
-  resolved "https://registry.yarnpkg.com/@adonisjs/view/-/view-6.1.5.tgz#2a8e1a69a9b906c855099a2e5e5634c678eae5a4"
-  integrity sha512-WGyNGXZQYzeK39ufkK+OELsARBg9GRQFZUCUwQpe33ddLVGYb3D1ElAhW+rFY9l0/+h7ClXpjdns0JKBsYk9iQ==
+"@adonisjs/view@^6.1.6":
+  version "6.1.6"
+  resolved "https://registry.yarnpkg.com/@adonisjs/view/-/view-6.1.6.tgz#f7ae606de9827d7cee663b2f21bd4ddcbb1773a8"
+  integrity sha512-RCARjavEMu/2kQAMZA7DzjBmlpK7AGtfFCfBwJWNfoI/r2gqyba1eX3GkjcUaE69llahLAvnsONpDtR0YyuO9A==
   dependencies:
     edge-error "^2.0.8"
     edge-supercharged "^3.1.1"
-    edge.js "^5.3.6"
+    edge.js "^5.3.7"
 
 "@ampproject/remapping@^2.1.0":
   version "2.2.0"
@@ -1654,6 +1654,29 @@
     slugify "^1.6.5"
     truncatise "0.0.8"
 
+"@poppinss/utils@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@poppinss/utils/-/utils-5.0.0.tgz#47e53f61d73a4a12a0bfd228f1b2dc05010af33e"
+  integrity sha512-SpJL5p4Nx3bRCpCf62KagZLUHLvJD+VDylGpXAeP2G5qb3s6SSOBlpaFmer4GxdyTqLIUt0PRCzF1TbpNU+qZw==
+  dependencies:
+    "@poppinss/file-generator" "^1.0.2"
+    "@types/bytes" "^3.1.1"
+    "@types/he" "^1.1.2"
+    bytes "^3.1.2"
+    change-case "^4.1.2"
+    cuid "^2.1.8"
+    flattie "^1.1.0"
+    fs-readdir-recursive "^1.1.0"
+    he "^1.2.0"
+    kind-of "^6.0.3"
+    lodash "^4.17.21"
+    ms "^2.1.3"
+    pluralize "^8.0.0"
+    require-all "^3.0.0"
+    resolve-from "^5.0.0"
+    slugify "^1.6.5"
+    truncatise "0.0.8"
+
 "@sinclair/typebox@^0.23.3":
   version "0.23.5"
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.23.5.tgz#93f7b9f4e3285a7a9ade7557d9a8d36809cbc47d"
@@ -2188,7 +2211,7 @@ acorn@^7.0.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
-acorn@^8.0.5, acorn@^8.4.1, acorn@^8.5.0, acorn@^8.7.0:
+acorn@^8.0.5, acorn@^8.4.1, acorn@^8.5.0, acorn@^8.7.1:
   version "8.7.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.7.1.tgz#0197122c843d1bf6d0a5e83220a788f278f63c30"
   integrity sha512-Xx54uLJQZ19lKygFXOWsscKUbsBZW0CPykPhVQdhIeIwrbPmJzqeASDInc8nKBnp/JT6igTs82qPXz069H8I/A==
@@ -2499,7 +2522,7 @@ astral-regex@^2.0.0:
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-2.0.0.tgz#483143c567aeed4785759c0865786dc77d7d2e31"
   integrity sha512-Z7tMw1ytTXt5jqMcOP+OQteU1VuNK9Y02uuJtKQ1Sv69jXQKKg5cibLwGJow8yzZP+eAc18EmLGPal0bp36rvQ==
 
-astring@^1.8.1:
+astring@^1.8.3:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/astring/-/astring-1.8.3.tgz#1a0ae738c7cc558f8e5ddc8e3120636f5cebcb85"
   integrity sha512-sRpyiNrx2dEYIMmUXprS8nlpRg2Drs8m9ElX9vVEXaCB4XEAJhKfs7IcX0IwShjuOAjLR6wzIrgoptz1n19i1A==
@@ -3700,13 +3723,13 @@ edge-lexer@^4.0.10:
   dependencies:
     edge-error "^2.0.8"
 
-edge-parser@^8.0.14:
-  version "8.0.14"
-  resolved "https://registry.yarnpkg.com/edge-parser/-/edge-parser-8.0.14.tgz#1e8d8ca6849859b4e38e64bfb5408c0b4c5c3f86"
-  integrity sha512-N7mFw0JcozaHfHt5CJL53T8ETdAVr6aDoFa7cwjTN5qvtsYT8WyeTVO9720Rs0W8FVjliK/VZAkZ6dpxehJqFA==
+edge-parser@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/edge-parser/-/edge-parser-8.1.0.tgz#91609de72c2b02b043042643037f404f555a9d3f"
+  integrity sha512-Px+Z1leudG7SgsqjuMpO16DcZGopd2uXkziZwrymQDZe3UMpi37Q7eOMrpB2KRD6/zqFUPhNN3b6MZrCvGDq9w==
   dependencies:
-    acorn "^8.7.0"
-    astring "^1.8.1"
+    acorn "^8.7.1"
+    astring "^1.8.3"
     edge-error "^2.0.8"
     edge-lexer "^4.0.10"
     js-stringify "^1.0.2"
@@ -3719,16 +3742,16 @@ edge-supercharged@^3.1.1:
     "@poppinss/utils" "^3.1.3"
     slash "^3.0.0"
 
-edge.js@^5.3.6:
-  version "5.3.6"
-  resolved "https://registry.yarnpkg.com/edge.js/-/edge.js-5.3.6.tgz#db7b8c5b02942e089e9997a86f29c608a48ed130"
-  integrity sha512-cyaHhR+1iIoozpftTbqyMVW8cDcdEqm9e/2vKxp2XIH0JPMTCVRGBdAC6k2MzYizygbgjnZdKRoz+Ec9xFnU5Q==
+edge.js@^5.3.7:
+  version "5.3.7"
+  resolved "https://registry.yarnpkg.com/edge.js/-/edge.js-5.3.7.tgz#47b14b5803cc9b14cc485c23a602bdb11f246505"
+  integrity sha512-KvG6kjF+eL52+83QMg9/WstBYidBB3GwekAqDvi5d2yvu6GDvYDIrbCoOoy+O9rooGE9LBTZgEmsjwKeKzlYpQ==
   dependencies:
     "@poppinss/inspect" "^1.0.1"
-    "@poppinss/utils" "^4.0.4"
+    "@poppinss/utils" "^5.0.0"
     edge-error "^2.0.8"
     edge-lexer "^4.0.10"
-    edge-parser "^8.0.14"
+    edge-parser "^8.1.0"
     js-stringify "^1.0.2"
     macroable "^7.0.1"
     stringify-attributes "^2.0.0"
@@ -7141,10 +7164,10 @@ safe-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass-loader@^13.0.0:
-  version "13.0.0"
-  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.0.0.tgz#0b4bff0289951ed21240bca54453eca3dbda1713"
-  integrity sha512-IHCFecI+rbPvXE2zO/mqdVFe8MU7ElGrwga9hh2H65Ru4iaBJAMRteum1c4Gsxi9Cq1FOtTEDd6+/AEYuQDM4Q==
+sass-loader@^13.0.2:
+  version "13.0.2"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.0.2.tgz#e81a909048e06520e9f2ff25113a801065adb3fe"
+  integrity sha512-BbiqbVmbfJaWVeOOAu2o7DhYWtcNmTfvroVgFXa6k2hHheMxNAeDHLNoDy/Q5aoaVlz0LH+MbMktKwm9vN/j8Q==
   dependencies:
     klona "^2.0.4"
     neo-async "^2.6.2"
@@ -7999,10 +8022,10 @@ type-is@^1.6.18, type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typescript@~4.6:
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.6.4.tgz#caa78bbc3a59e6a5c510d35703f6a09877ce45e9"
-  integrity sha512-9ia/jWHIEbo49HfjrLGfKbZSuWo9iTMwXO+Ca3pRsSpbsMbc7/IU8NKdCZVRRBafVPGnoJeFL76ZOAA84I9fEg==
+typescript@~4.7:
+  version "4.7.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
+  integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
 
 uid-safe@2.1.5:
   version "2.1.5"

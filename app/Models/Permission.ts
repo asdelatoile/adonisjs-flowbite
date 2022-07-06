@@ -10,7 +10,7 @@ export default class Permission extends BaseModel {
   public name: string
 
   @column({})
-  public description: string
+  public description: string | null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
