@@ -9,3 +9,8 @@ body {
 body {
     min-height: 100vh;
 }
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}

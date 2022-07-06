@@ -1,12 +1,22 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Database from '@ioc:Adonis/Lucid/Database'
 import Permission from 'App/Models/Permission'
 import PermissionValidator from 'App/Validators/PermissionValidator'
 
+import Route from '@ioc:Adonis/Core/Route'
+
 export default class PermissionController {
 
-  public async index({ view, bouncer, route }: HttpContextContract) {
+  public async index({ request, view, bouncer, route }: HttpContextContract) {
     await bouncer.authorize('dynamic', route?.name)
-    const permissions = await Permission.all()
+    const page = request.input('page', 1)
+    const limit = 2
+    const permissions = await Database
+      .from(Permission.table)
+      .paginate(page, limit)
+    const url = Route.makeUrl('permissions.index')
+    permissions.baseUrl(url);
+    // const permissions = await Permission.all()
     return view.render('permissions/index', { permissions })
   }
 
