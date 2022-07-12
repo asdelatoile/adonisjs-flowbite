@@ -2,9 +2,60 @@
 
 @section('body')
 
-{{ inspect(flashMessages.all()) }}
+
+
+<nav class="flex py-3 px-5 text-gray-700 rounded-lg border bg-gray-800 border-gray-700" aria-label="Breadcrumb">
+  <ol class="inline-flex items-center space-x-1 md:space-x-3">
+    <li class="inline-flex items-center">
+      <a href="#"
+        class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+        <svg class="mr-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
+          </path>
+        </svg>
+        Home
+      </a>
+    </li>
+    <li>
+      <div class="flex items-center">
+        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <a href="#"
+          class="ml-1 text-sm font-medium text-gray-500 hover:text-gray-900 md:ml-2 dark:text-gray-400 dark:hover:text-white">Templates</a>
+      </div>
+    </li>
+    <li aria-current="page">
+      <div class="flex items-center">
+        <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span class="ml-1 text-sm font-medium text-white md:ml-2 dark:text-gray-400">Flowbite</span>
+      </div>
+    </li>
+  </ol>
+</nav>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
+
+  <div class="text-right">
+
+    <a href="{{ route('permissions.create') }}"
+      class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+      <svg class="w-5 h-5 mr-1 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+      </svg>
+      Add
+    </a>
+
+  </div>
+
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
@@ -31,7 +82,28 @@
         </td>
         <td class="px-6 py-4 text-right">
           <a href="{{ route('permissions.edit', { id: permission.id }) }}"
-            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+            class="text-xs text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg px-2.5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+              </path>
+            </svg>
+          </a>
+
+          <form class="inline-flex" action="{{ route('permissions.destroy', {id: permission.id}) }}?_method=DELETE"
+            method="POST">
+            {{ csrfField() }}
+            <button type="submit"
+              class="text-xs text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg px-2.5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </form>
+
+
         </td>
       </tr>
       @end
@@ -41,8 +113,8 @@
 </div>
 
 
-<div class="mt-5">
-  <nav aria-label="Page navigation example">
+<div class="mt-5 text-right">
+  <nav>
     <ul class="inline-flex items-center -space-x-px">
       <li>
         <a href="{{permissions.getPreviousPageUrl()}}"
@@ -84,5 +156,7 @@
     </ul>
   </nav>
 </div>
+
+{{ inspect(flashMessages.all()) }}
 
 @end

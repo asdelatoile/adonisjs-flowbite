@@ -30,7 +30,7 @@ export default class PermissionController {
     const payload = await request.validate(PermissionValidator)
     await Permission.create(payload)
     session.flash('success', 'Permission created successfully')
-    return response.redirect().back()
+    return response.redirect().toRoute('permissions.index')
   }
 
   public async show({ response, params, bouncer, route }: HttpContextContract) {
@@ -59,10 +59,11 @@ export default class PermissionController {
 
 
 
-  public async destroy({ response, params, bouncer, route }: HttpContextContract) {
+  public async destroy({ response, params, session, bouncer, route }: HttpContextContract) {
     await bouncer.authorize('dynamic', route?.name)
     const permission = await Permission.findOrFail(params.id)
     permission.delete()
-    return response.ok(permission)
+    session.flash('success', 'Permission deleted successfully')
+    return response.redirect().toRoute('permissions.index')
   }
 }

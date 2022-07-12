@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="flex">
+    <div class="flex min-h-full">
         <aside
             class="dark bg-gray-800 hidden fixed inset-0 z-20 flex-none w-72 h-full lg:static lg:h-auto lg:overflow-y-visible lg:pt-0 lg:w-48 lg:block"
             aria-label="Sidebar">
@@ -30,7 +30,7 @@
                 </ul>
             </div>
         </aside>
-        <div class="container mx-auto p-8 min-h-full">
+        <div class="mx-auto min-h-full w-full p-10">
             @!section('body')
         </div>
     </div>
