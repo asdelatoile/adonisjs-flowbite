@@ -2,34 +2,67 @@
 
 @section('body')
 
-<form action="/login" method="POST">
-    {{ csrfField() }}
-    <div>
-        <p>
-            <label for="title">Email</label>
-        </p>
-        <input type="text" name="email" value="{{ flashMessages.get('email') || '' }}" />
-        @if(flashMessages.has('errors.email'))
-        {{ flashMessages.get('errors.email') }}
-        @end
-    </div>
+<div class="w-full">
 
-    <div>
-        <p>
-            <label for="body">Password</label>
-        </p>
-        <input type="password" name="password" />
-        @if(flashMessages.has('errors.password'))
-        {{ flashMessages.get('errors.password') }}
-        @end
-    </div>
 
-    <div>
+    <h1 class="mb-4 text-xl font-semibold text-gray-700">
+        Login
+    </h1>
+    <form action="/login" method="POST">
+        {{ csrfField() }}
+
+        <label class="block text-sm">
+            <span for="email" class="text-gray-700">Email</span>
+            <input class="block w-full mt-1 text-sm focus:outline-none 
+                @if(flashMessages.has('errors.email'))
+                 border-red-600 focus:border-red-400 focus:shadow-outline-red 
+                @else
+                 border-cool-gray-200 focus:border-purple-400 focus:shadow-outline-purple 
+                @end
+                 form-input" type="text" name="email" value="{{ flashMessages.get('email') || '' }}">
+            @if(flashMessages.has('errors.email'))
+            <span class="text-xs text-red-600">
+                {{ flashMessages.get('errors.email') }}
+            </span>
+            @end
+        </label>
+
+        <label class="block mt-4 text-sm">
+            <span class="text-gray-700">Password</span>
+            <input class="block w-full mt-1 text-sm focus:outline-none 
+                @if(flashMessages.has('errors.password'))
+                 border-red-600 focus:border-red-400 focus:shadow-outline-red 
+                @else
+                 border-cool-gray-200 focus:border-purple-400 focus:shadow-outline-purple 
+                @end
+                 form-input" type="password" name="password">
+            @if(flashMessages.has('errors.password'))
+            <span class="text-xs text-red-600">
+                {{ flashMessages.get('errors.password') }}
+            </span>
+            @end
+        </label>
+
         @!component('components/button', {
-        text: 'Login',
+        class: 'w-full mt-4',
+        text: 'Log in',
         type: 'submit'
         })
-    </div>
-</form>
+
+        <hr class="my-8" />
+
+        <p class="mt-4">
+            <a class="text-sm font-medium text-purple-600 hover:underline" href="./forgot-password.html">
+                Forgot your password?
+            </a>
+        </p>
+
+
+        <div>
+
+        </div>
+    </form>
+
+</div>
 
 @end

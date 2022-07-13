@@ -4,18 +4,16 @@
 
 
 @can('dynamic', 'posts.edit')
-  <div>KO</div>
+<div>KO</div>
 @end
 
 @can('dynamic', 'permissions.edit')
-  <div>OK</div>
+<div>OK</div>
 @end
 
 @if(auth.isLoggedIn)
 {{ inspect({ authorizations: auth.user.authorizations })}}
 @endif
-
-{{ inspect(flashMessages.all()) }}
 
 @if(flashMessages.has('success'))
 {{ flashMessages.get('success') }}

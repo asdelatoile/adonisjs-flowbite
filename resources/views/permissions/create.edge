@@ -2,8 +2,6 @@
 
 @section('body')
 
-{{ inspect(flashMessages.all()) }}
-
 <form action="{{ route('permissions.store') }}" method="POST">
     {{ csrfField() }}
     <div>

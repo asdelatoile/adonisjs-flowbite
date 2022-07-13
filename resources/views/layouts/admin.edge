@@ -67,6 +67,10 @@
     </div>
     @endif
 
+    @if(env('NODE_ENV') === 'development')
+    @!component('components/debug')
+    @endif
+
 
     @section('scripts')
     @if(flashMessages.has('error'))

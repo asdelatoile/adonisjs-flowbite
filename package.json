@@ -14,6 +14,8 @@
     "@symfony/webpack-encore": "^2.1.0",
     "adonis-preset-ts": "^2.1.0",
     "autoprefixer": "^10.4.7",
+    "color": "^4.2.3",
+    "file-loader": "^6.0.0",
     "flowbite": "^1.4.7",
     "pino-pretty": "^8.1.0",
     "postcss": "^8.4.14",
