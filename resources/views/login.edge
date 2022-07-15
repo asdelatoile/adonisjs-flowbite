@@ -11,37 +11,19 @@
     <form action="/login" method="POST">
         {{ csrfField() }}
 
-        <label class="block text-sm">
-            <span for="email" class="text-gray-700">Email</span>
-            <input class="block w-full mt-1 text-sm focus:outline-none 
-                @if(flashMessages.has('errors.email'))
-                 border-red-600 focus:border-red-400 focus:shadow-outline-red 
-                @else
-                 border-cool-gray-200 focus:border-purple-400 focus:shadow-outline-purple 
-                @end
-                 form-input" type="text" name="email" value="{{ flashMessages.get('email') || '' }}">
-            @if(flashMessages.has('errors.email'))
-            <span class="text-xs text-red-600">
-                {{ flashMessages.get('errors.email') }}
-            </span>
-            @end
-        </label>
+        @!component('components/input', {
+        text: 'Email',
+        type: 'text',
+        name: 'email',
+        value: flashMessages.get('email') || ''
+        })
 
-        <label class="block mt-4 text-sm">
-            <span class="text-gray-700">Password</span>
-            <input class="block w-full mt-1 text-sm focus:outline-none 
-                @if(flashMessages.has('errors.password'))
-                 border-red-600 focus:border-red-400 focus:shadow-outline-red 
-                @else
-                 border-cool-gray-200 focus:border-purple-400 focus:shadow-outline-purple 
-                @end
-                 form-input" type="password" name="password">
-            @if(flashMessages.has('errors.password'))
-            <span class="text-xs text-red-600">
-                {{ flashMessages.get('errors.password') }}
-            </span>
-            @end
-        </label>
+        @!component('components/input', {
+        text: 'Password',
+        type: 'password',
+        name: 'password',
+        value: ''
+        })
 
         @!component('components/button', {
         class: 'w-full mt-4',
@@ -57,10 +39,6 @@
             </a>
         </p>
 
-
-        <div>
-
-        </div>
     </form>
 
 </div>
