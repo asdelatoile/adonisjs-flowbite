@@ -25,7 +25,7 @@ export default class AuthController {
         } catch {
             session.flash("email", email);
             session.flash("error", "Error !");
-            return response.redirect().back();
+            return response.redirect().withQs().back();
         }
     }
 }

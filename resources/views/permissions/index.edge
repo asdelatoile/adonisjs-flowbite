@@ -2,9 +2,24 @@
 
 @section('body')
 
-<h2 class="my-6 text-2xl font-semibold text-gray-700">
-  Permissions
-</h2>
+
+<div class="flex items-center justify-between">
+
+  <h2 class="my-6 text-2xl font-semibold text-gray-700">
+    Permissions
+  </h2>
+  <a
+    href="{{ route('permissions.create') }}"
+    class="flex items-center justify-between px-2 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-teal-500 border border-transparent rounded-lg active:bg-teal-500 hover:bg-teal-600 focus:outline-none focus:shadow-outline-teal">
+    <svg class="w-6 h-6 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd"
+        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd">
+      </path>
+    </svg>
+    <span>Add</span>
+  </a>
+
+</div>
 
 <nav class="flex py-3 px-5 mb-8 text-gray-700 rounded-lg border bg-purple-600" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-3">
@@ -43,19 +58,35 @@
 
 <div class="w-full mb-8 overflow-hidden rounded-lg ring-1 ring-black ring-opacity-5">
   <div class="w-full overflow-x-auto">
-    <table class="w-full whitespace-no-wrap">
+    <table id="datatable" class="w-full whitespace-no-wrap">
       <thead>
         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50">
-          <th class="px-4 py-3">Id</th>
-          <th class="px-4 py-3">Name</th>
-          <th class="px-4 py-3">Description</th>
-          <th class="px-4 py-3">Actions</th>
+          @!component('components/table/column', {
+              label: 'Id',
+              sortable: true,
+              field: 'id',
+              controller: 'permissions'
+          })
+          @!component('components/table/column', {
+              label: 'Name',
+              sortable: true,
+              field: 'name',
+              controller: 'permissions'
+          })
+          @!component('components/table/column', {
+              label: 'Description',
+              sortable: false,
+          })
+          @!component('components/table/column', {
+              label: 'Actions',
+              sortable: false,
+          })
         </tr>
       </thead>
       <tbody class="bg-white divide-y">
 
         @each(permission in permissions)
-        <tr class="text-gray-700 odd:bg-white even:bg-gray-50">
+        <tr class="text-gray-700 bg-white">
           <td class="px-4 py-3">
             {{permission.id}}
           </td>
@@ -68,7 +99,7 @@
           <td class="px-4 py-3 text-sm">
             <div class="flex items-center space-x-4 text-sm">
               <a href="{{ route('permissions.edit', { id: permission.id }) }}"
-                class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg focus:outline-none focus:shadow-outline-gray">
+                class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-blue-600 rounded-lg focus:outline-none focus:shadow-outline-gray">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
@@ -78,8 +109,9 @@
               <form class="inline-flex" action="{{ route('permissions.destroy', {id: permission.id}) }}?_method=DELETE"
                 method="POST">
                 {{ csrfField() }}
-                <button type="submit"
-                  class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg focus:outline-none focus:shadow-outline-gray">
+                <button
+                  class="open-confirm flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-orange-600 rounded-lg focus:outline-none focus:shadow-outline-gray"
+                  type="button">
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
                       d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
@@ -98,7 +130,9 @@
   <div
     class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t bg-gray-50 sm:grid-cols-9">
     <span class="flex items-center col-span-3">
-      Showing {{ (permissions.currentPage - 1) * permissions.perPage || 1 }}-{{ (((permissions.currentPage - 1) * permissions.perPage) + permissions.perPage) > permissions.total ? permissions.total : ((permissions.currentPage - 1) * permissions.perPage) + permissions.perPage }} of {{ permissions.total }}
+      Showing {{ (permissions.currentPage - 1) * permissions.perPage || 1 }}-{{ (((permissions.currentPage - 1) *
+      permissions.perPage) + permissions.perPage) > permissions.total ? permissions.total : ((permissions.currentPage -
+      1) * permissions.perPage) + permissions.perPage }} of {{ permissions.total }}
     </span>
     <span class="col-span-2"></span>
     <!-- Pagination -->
@@ -146,4 +180,84 @@
 
 </div>
 
+<div id="confirm-modal" tabindex="-1"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
+  <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <button type="button"
+        class="close-confirm absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white">
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
+      <div class="p-6 text-center">
+        <svg aria-hidden="true" class="mx-auto mb-4 w-14 h-14 text-gray-400" fill="none" stroke="currentColor"
+          viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <h3 class="mb-5 text-lg font-normal text-gray-500">Are you sure you want to delete this
+          product?</h3>
+        <button id="confirmPopup" type="button"
+          class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+          Yes, I'm sure
+        </button>
+        <button type="button"
+          class="close-confirm text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10">No,
+          cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@end
+
+@section('scripts')
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+
+    let currentForm = null;
+    const targetEl = document.getElementById('confirm-modal');
+    const options = {
+      onHide: () => {
+          console.log('modal is hidden');
+      },
+      onShow: () => {
+          console.log('modal is shown');
+      },
+      onToggle: () => {
+          console.log('modal has been toggled');
+      }
+    };
+    const confirmModal = new Modal(targetEl, options);
+    // console.log(confirmModal);
+
+    document.querySelectorAll('.close-confirm').forEach(elt => elt.addEventListener('click', (subElt) => {
+      currentForm = null;
+      confirmModal.hide();
+    }));
+
+    document.querySelectorAll('.open-confirm').forEach(elt => elt.addEventListener('click', (subElt) => {
+      currentForm = subElt.target.closest('form');
+      confirmModal.show();
+    }));
+
+    const buttonValid = document.getElementById('confirmPopup');
+    buttonValid.addEventListener("click", (e) => {
+      // console.log(currentForm);
+      currentForm.submit();
+      // confirmModal.hide();
+      // confirmModal.confirm();
+    });
+
+});
+
+
+
+
+</script>
 @end

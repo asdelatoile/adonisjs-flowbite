@@ -27,7 +27,6 @@ Route.group(() => {
   Route.resource('permissions', 'PermissionController').as('permissions')
 }).prefix('/admin').middleware('auth');
 
-
 Route.get('/login', 'AuthController.login');
 Route.post('/login', 'AuthController.authenticate');
 
