@@ -4,13 +4,13 @@
     </span>
     <select id="limitSelector"
         class="inline-block text-xs rounded bg-white border-cool-gray-200 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple">
-        <option {{session.get(`${records}.limit`)=='5' ? 'selected' : '' }} value="5">5</option>
-        <option {{session.get(`${records}.limit`)=='10' ? 'selected' : '' }} value="10">10</option>
-        <option {{session.get(`${records}.limit`)=='25' ? 'selected' : '' }} value="25">25</option>
-        <option {{session.get(`${records}.limit`)=='50' ? 'selected' : '' }} value="50">50</option>
-        <option {{session.get(`${records}.limit`)=='-1' ? 'selected' : '' }} value="-1">Tous</option>
+        <option {{session.get(`${controller}.limit`)=='5' ? 'selected' : '' }} value="5">5</option>
+        <option {{session.get(`${controller}.limit`)=='10' ? 'selected' : '' }} value="10">10</option>
+        <option {{session.get(`${controller}.limit`)=='25' ? 'selected' : '' }} value="25">25</option>
+        <option {{session.get(`${controller}.limit`)=='50' ? 'selected' : '' }} value="50">50</option>
+        <option {{session.get(`${controller}.limit`)=='-1' ? 'selected' : '' }} value="-1">Tous</option>
     </select>
-    <span class="text-gray-700">
+    <span class="text-gray-700 mr-2">
         entries
     </span>
 </label>
