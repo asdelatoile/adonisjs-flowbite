@@ -3,27 +3,14 @@
 @tailwind utilities;
 
 body {
-    height: 100vh;
+  height: 100vh;
 }
 
 body {
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 a.disabled {
   pointer-events: none;
   cursor: default;
-}
-
-.form-input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: #fff;
-  /* border-color: #e2e8f0; */
-  border-width: 1px;
-  border-radius: 0.25rem;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
 }

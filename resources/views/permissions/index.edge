@@ -2,14 +2,11 @@
 
 @section('body')
 
-
 <div class="flex items-center justify-between">
-
   <h2 class="my-6 text-2xl font-semibold text-gray-700">
     Permissions
   </h2>
-  <a
-    href="{{ route('permissions.create') }}"
+  <a href="{{ route('permissions.create') }}"
     class="flex items-center justify-between px-2 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-teal-500 border border-transparent rounded-lg active:bg-teal-500 hover:bg-teal-600 focus:outline-none focus:shadow-outline-teal">
     <svg class="w-6 h-6 mr-1 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd"
@@ -18,10 +15,9 @@
     </svg>
     <span>Add</span>
   </a>
-
 </div>
 
-<nav class="flex py-3 px-5 mb-8 text-gray-700 rounded-lg border bg-purple-600" aria-label="Breadcrumb">
+<nav class="flex py-3 px-5 mb-4 text-gray-700 rounded-lg border bg-purple-600" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-3">
     <li class="inline-flex items-center">
       <a href="#" class="inline-flex items-center text-sm font-medium text-purple-100 hover:text-white">
@@ -56,30 +52,41 @@
   </ol>
 </nav>
 
+<div class="mb-4 columns-2">
+  <div>
+    <input class="block w-full rounded bg-white text-xs focus:outline-none border-cool-gray-200 focus:border-purple-400 focus:shadow-outline-purple" type="text" name="search" value="" placeholder="Search...">
+  </div>
+  <div class="text-right">
+    @!component('components/table/limitselector', {
+      records: permissions
+    })
+  </div>
+</div>
+
 <div class="w-full mb-8 overflow-hidden rounded-lg ring-1 ring-black ring-opacity-5">
   <div class="w-full overflow-x-auto">
     <table id="datatable" class="w-full whitespace-no-wrap">
       <thead>
         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b bg-gray-50">
           @!component('components/table/column', {
-              label: 'Id',
-              sortable: true,
-              field: 'id',
-              controller: 'permissions'
+          label: 'Id',
+          sortable: true,
+          field: 'id',
+          controller: 'permissions'
           })
           @!component('components/table/column', {
-              label: 'Name',
-              sortable: true,
-              field: 'name',
-              controller: 'permissions'
+          label: 'Name',
+          sortable: true,
+          field: 'name',
+          controller: 'permissions'
           })
           @!component('components/table/column', {
-              label: 'Description',
-              sortable: false,
+          label: 'Description',
+          sortable: false,
           })
           @!component('components/table/column', {
-              label: 'Actions',
-              sortable: false,
+          label: 'Actions',
+          sortable: false,
           })
         </tr>
       </thead>
@@ -126,58 +133,9 @@
       </tbody>
     </table>
   </div>
-
-  <div
-    class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t bg-gray-50 sm:grid-cols-9">
-    <span class="flex items-center col-span-3">
-      Showing {{ (permissions.currentPage - 1) * permissions.perPage || 1 }}-{{ (((permissions.currentPage - 1) *
-      permissions.perPage) + permissions.perPage) > permissions.total ? permissions.total : ((permissions.currentPage -
-      1) * permissions.perPage) + permissions.perPage }} of {{ permissions.total }}
-    </span>
-    <span class="col-span-2"></span>
-    <!-- Pagination -->
-    <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-      <nav aria-label="Table navigation">
-        <ul class="inline-flex items-center">
-          <li class="flex items-center">
-            <a href="{{permissions.getPreviousPageUrl()}}"
-              class="{{ permissions.getPreviousPageUrl() ? '' : 'disabled opacity-20' }} inline-block px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple">
-              <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                <path
-                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                  clip-rule="evenodd" fill-rule="evenodd"></path>
-              </svg>
-            </a>
-          </li>
-
-          @each(anchor in permissions.getUrlsForRange(1, permissions.lastPage))
-          <li>
-
-
-            <a href="{{ anchor.url }}" aria-current="page"
-              class="inline-block px-3 py-1 {{ permissions.currentPage === anchor.page ? 'text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600' : ''}} rounded-md focus:outline-none focus:shadow-outline-purple">
-              {{ anchor.page }}
-            </a>
-
-          </li>
-          @endeach
-
-          <li class="flex items-center">
-            <a href="{{permissions.getNextPageUrl()}}"
-              class="{{ permissions.getNextPageUrl() ? '' : 'disabled opacity-20' }} inline-block px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple">
-              <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                <path
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd" fill-rule="evenodd"></path>
-              </svg>
-            </a>
-          </li>
-
-        </ul>
-      </nav>
-    </span>
-  </div>
-
+  @!component('components/table/pagination', {
+  records: permissions
+  })
 </div>
 
 <div id="confirm-modal" tabindex="-1"
@@ -219,7 +177,6 @@
 @section('scripts')
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
-
     let currentForm = null;
     const targetEl = document.getElementById('confirm-modal');
     const options = {
@@ -234,26 +191,19 @@
       }
     };
     const confirmModal = new Modal(targetEl, options);
-    // console.log(confirmModal);
-
     document.querySelectorAll('.close-confirm').forEach(elt => elt.addEventListener('click', (subElt) => {
       currentForm = null;
       confirmModal.hide();
     }));
-
     document.querySelectorAll('.open-confirm').forEach(elt => elt.addEventListener('click', (subElt) => {
       currentForm = subElt.target.closest('form');
       confirmModal.show();
     }));
-
     const buttonValid = document.getElementById('confirmPopup');
     buttonValid.addEventListener("click", (e) => {
-      // console.log(currentForm);
       currentForm.submit();
-      // confirmModal.hide();
-      // confirmModal.confirm();
     });
-
+    
 });
 
 

@@ -29,6 +29,7 @@ Route.group(() => {
 
 Route.get('/login', 'AuthController.login');
 Route.post('/login', 'AuthController.authenticate');
+Route.get('/logout', 'AuthController.logout');
 
 Route.get('/', async ({ auth, bouncer, view }) => {
   return view.render('welcome')

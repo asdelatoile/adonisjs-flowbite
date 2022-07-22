@@ -6,6 +6,12 @@ export default class AuthController {
         return view.render("login");
     }
 
+    public async logout({ auth, response }: HttpContextContract) {
+        await auth.use('web').logout()
+        response.redirect('/login')
+    }
+
+
     public async authenticate({
         request,
         auth,
