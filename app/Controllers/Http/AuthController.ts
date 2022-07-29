@@ -1,5 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import LoginValidator from "App/Validators/LoginValidator";
+// import Mail from '@ioc:Adonis/Addons/Mail'
 
 export default class AuthController {
     public async login({ view }: HttpContextContract) {
@@ -34,4 +35,20 @@ export default class AuthController {
             return response.redirect().withQs().back();
         }
     }
+
+    public async forgotpassword({}){
+        // await Mail.sendLater((message) => {
+        //     message
+        //       .from('info@example.com')
+        //       .to('virk@adonisjs.com')
+        //       .subject('Welcome Onboard!')
+        //       .htmlView('emails/forgotpassword', {
+        //         user: { fullName: 'Some Name' },
+        //         url: 'https://your-app.com/verification-url',
+        //       })
+              
+        //   })
+    }
+
+    
 }

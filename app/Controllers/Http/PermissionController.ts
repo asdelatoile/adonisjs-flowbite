@@ -4,6 +4,7 @@ import Permission from "App/Models/Permission";
 import PermissionValidator from "App/Validators/PermissionValidator";
 import customConfig from "Config/custom";
 import Route from "@ioc:Adonis/Core/Route";
+import { datatableFormat } from "App/Helpers/DatatableHelper";
 
 export default class PermissionController {
   public async index({
@@ -14,33 +15,12 @@ export default class PermissionController {
     route,
     session,
   }: HttpContextContract) {
+
+    // Check permissions
     await bouncer.authorize("dynamic", route?.name);
 
-    const page = request.input("page", session.get("permissions.page", 1));
-    if (session.get("permissions.page") !== page)
-      session.put("permissions.page", page);
-
-    const sort = request.input(
-      "sort",
-      session.get("permissions.sort", customConfig.pagination.field)
-    );
-    if (session.get("permissions.sort") !== sort)
-      session.put("permissions.sort", sort);
-
-    const dir = request.input(
-      "dir",
-      session.get("permissions.dir", customConfig.pagination.dir)
-    );
-    if (session.get("permissions.dir") !== dir)
-      session.put("permissions.dir", dir);
-
-    let limit = request.input(
-      "limit",
-      session.get("permissions.limit", customConfig.pagination.limit)
-    );
-    if (session.get("permissions.limit") !== limit)
-      session.put("permissions.limit", limit);
-    if (limit === "-1") limit = Infinity;
+    // Params sessions for pagination
+    const { page, sort, dir, limit } = datatableFormat(request, session, "permissions");
 
     const permissions = await Database.from(Permission.table)
       .orderBy(sort, dir)
@@ -50,8 +30,10 @@ export default class PermissionController {
         .redirect()
         .toRoute("permissions.index", { qs: { page: permissions.lastPage } });
     }
+
     const url = Route.builder().make("permissions.index");
     permissions.baseUrl(url);
+
     return view.render("permissions/index", { permissions });
   }
 

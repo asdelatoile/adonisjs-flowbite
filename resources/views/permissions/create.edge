@@ -4,25 +4,23 @@
 
 <form action="{{ route('permissions.store') }}" method="POST">
     {{ csrfField() }}
+
     <div>
-        <p>
-            <label for="name">Nom</label>
-        </p>
-        <input type="text" name="name" value="{{ flashMessages.get('name') || '' }}" />
-        @if(flashMessages.has('errors.name'))
-        {{ flashMessages.get('errors.name') }}
-        @end
+    @!component('components/input', {
+        text: 'Name',
+        type: 'text',
+        name: 'name',
+        value: flashMessages.get('name') || ''
+        })
     </div>
 
     <div>
-        <p>
-            <label for="description">Description</label>
-        </p>
-
-        <input type="text" name="description" value="{{ flashMessages.get('description') || '' }}" />
-        @if(flashMessages.has('errors.description'))
-        {{ flashMessages.get('errors.description') }}
-        @end
+    @!component('components/input', {
+        text: 'Description',
+        type: 'text',
+        name: 'description',
+        value: flashMessages.get('description') || ''
+        })
     </div>
 
     <div>
